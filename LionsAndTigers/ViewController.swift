@@ -35,6 +35,12 @@ class ViewController: UIViewController {
         // confirm existence of myTiger instance
         println("My tiger's name is \(myTiger.name), it's breed is \(myTiger.breed) and he's \(myTiger.age) years old. This is what he looks like: \(myTiger.image)")
         
+        // update UI
+        myImageView.image = myTiger.image
+        nameLabel.text = myTiger.name
+        ageLabel.text = String(myTiger.age)
+        breedLabel.text = myTiger.breed
+        
     }
 
     override func didReceiveMemoryWarning() {

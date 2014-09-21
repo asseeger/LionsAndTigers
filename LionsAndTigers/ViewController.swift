@@ -24,22 +24,28 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // instantiating Tiger
-        var myTiger = Tiger()
+        // instantiating first Tiger
+        var firstTiger = Tiger()
         // setting up myTigers properties
-        myTiger.name = "Tigger"
-        myTiger.breed = "Bengal"
-        myTiger.age = 3
-        myTiger.image = UIImage(named: "BengalTiger.jpg")
+        firstTiger.name = "Tigger"
+        firstTiger.breed = "Bengal"
+        firstTiger.age = 3
+        firstTiger.image = UIImage(named: "BengalTiger.jpg")
         
-        // confirm existence of myTiger instance
-        println("My tiger's name is \(myTiger.name), it's breed is \(myTiger.breed) and he's \(myTiger.age) years old. This is what he looks like: \(myTiger.image)")
+        // instantiating and setting properties for further tigers
+        var secondTiger = Tiger(name: "Tigress", breed: "Indechines Tiger", age: 2, image: UIImage(named: "IndochinesTiger.jpg"))
+        
+        var thirdTiger = Tiger(name: "Jacob", breed: "Malayan Tiger", age: 4, image: UIImage(named: "MalayanTiger.jpg"))
+        
+        var fourthTiger = Tiger(name: "Spar", breed: "Siberian Tiger", age: 5, image: UIImage(named: "Siberian.Tiger.jpg"))
         
         // update UI
-        myImageView.image = myTiger.image
-        nameLabel.text = myTiger.name
-        ageLabel.text = String(myTiger.age)
-        breedLabel.text = myTiger.breed
+        myImageView.image = firstTiger.image
+        nameLabel.text = firstTiger.name
+        ageLabel.text = String(firstTiger.age)
+        breedLabel.text = firstTiger.breed
+        
+        
         
     }
 

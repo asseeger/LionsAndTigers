@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var breedLabel: UILabel!
     
+    @IBOutlet weak var randomFactLabel: UILabel!
+    
     // property to be used in all functions of this class (focus is global)
     var myTigers:[Tiger] = []
     
@@ -53,6 +55,7 @@ class ViewController: UIViewController {
         nameLabel.text = firstTiger.name
         ageLabel.text = String(firstTiger.age)
         breedLabel.text = firstTiger.breed
+        randomFactLabel.text = firstTiger.randomFact()
         
     }
 
@@ -88,13 +91,14 @@ class ViewController: UIViewController {
             self.nameLabel.text = tiger.name
             self.ageLabel.text = "\(tiger.age)"
             self.breedLabel.text = tiger.breed
+            self.randomFactLabel.text = tiger.randomFact()
             
             }, completion: { (finished: Bool) -> () in})
         
         println(tiger.name + ": ")
         tiger.chuffANumberOfTimes(2)
-
-        
+        tiger.chuffANumberOfTimes(5, isLoud: false)
+        println(tiger.ageInTigerYearsFromAge(tiger.age))
         
     }
 

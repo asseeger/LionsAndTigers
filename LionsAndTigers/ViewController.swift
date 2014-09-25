@@ -18,7 +18,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var ageLabel: UILabel!
     
-    @IBOutlet weak var breedLabel: UILabel!    
+    @IBOutlet weak var breedLabel: UILabel!
+    
+    // property to be used in all functions of this class (focus is global)
+    var myTigers:[Tiger] = []
+    
+    var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +34,25 @@ class ViewController: UIViewController {
         // setting up myTigers properties
         firstTiger.name = "Tigger"
         firstTiger.breed = "Bengal"
-        firstTiger.age = 3
+        firstTiger.age = 1
         firstTiger.image = UIImage(named: "BengalTiger.jpg")
         
+        myTigers.append(firstTiger)
+        
         // instantiating and setting properties for further tigers
-        var secondTiger = Tiger(name: "Tigress", breed: "Indechines Tiger", age: 2, image: UIImage(named: "IndochinesTiger.jpg"))
+        var secondTiger = Tiger(name: "Tigress", breed: "Indechines Tiger", age: 2, image: UIImage(named: "IndochineseTiger.jpg"))
         
-        var thirdTiger = Tiger(name: "Jacob", breed: "Malayan Tiger", age: 4, image: UIImage(named: "MalayanTiger.jpg"))
+        var thirdTiger = Tiger(name: "Jacob", breed: "Malayan Tiger", age: 3, image: UIImage(named: "MalayanTiger.jpg"))
         
-        var fourthTiger = Tiger(name: "Spar", breed: "Siberian Tiger", age: 5, image: UIImage(named: "Siberian.Tiger.jpg"))
+        var fourthTiger = Tiger(name: "Spar", breed: "Siberian Tiger", age: 4, image: UIImage(named: "SiberianTiger.jpg"))
+        
+        myTigers += [secondTiger, thirdTiger, fourthTiger]
         
         // update UI
         myImageView.image = firstTiger.image
         nameLabel.text = firstTiger.name
         ageLabel.text = String(firstTiger.age)
         breedLabel.text = firstTiger.breed
-        
-        
         
     }
 
@@ -55,6 +62,40 @@ class ViewController: UIViewController {
     }
 
     @IBAction func nextBarButtonItemPressed(sender: UIBarButtonItem) {
+        
+        // randomised display of tigers
+//        let randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
+//        myImageView.image = myTigers[randomIndex].image
+//        nameLabel.text = myTigers[randomIndex].name
+//        ageLabel.text = String(myTigers[randomIndex].age)
+//        breedLabel.text = myTigers[randomIndex].breed
+        
+        println(sender)
+        
+        // sequential display of tigers
+        if index == myTigers.count - 1 {
+            index = 0
+        } else{
+            index += 1
+        }
+
+        println("Index # \(index)")
+        
+        let tiger = myTigers[index]
+        
+        UIView.transitionWithView(self.view, duration: 1, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            self.myImageView.image = tiger.image
+            self.nameLabel.text = tiger.name
+            self.ageLabel.text = "\(tiger.age)"
+            self.breedLabel.text = tiger.breed
+            
+            }, completion: { (finished: Bool) -> () in})
+        
+        println(tiger.name + ": ")
+        tiger.chuffANumberOfTimes(2)
+
+        
+        
     }
 
 }

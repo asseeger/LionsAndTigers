@@ -14,4 +14,14 @@ struct Tiger {
     var breed = ""
     var age = 0
     var image = UIImage(named: "")
+    
+    func chuff () {
+        println("Tiger: Chuff Chuff")
+    }
+    
+    func chuffANumberOfTimes (numberOfTimes: Int) {
+        for var chuff = 0; chuff < numberOfTimes; ++chuff {
+            self.chuff()
+        }
+    }
 }
